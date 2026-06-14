@@ -1,38 +1,46 @@
 import axios from 'axios';
 import './App.css';
 import Header from './Comp/Header';
-import Home from './Comp/Home';
 import { useEffect, useState } from 'react';
-
 
 function App() {
 
   const [students, setStudents] = useState([]);
 
-  useEffect(() =>{
-    getstudents();
-  },[]);
+  useEffect(() => {
+    getStudents();
+  }, []);
 
-  async function getstudents(){
-    const res = await axios.get("http://localhost:5000/api/Students1");
+  async function getStudents() {
+    const res = await axios.get("http://localhost:8080/student");
+    console.log(res.data);
+    
     setStudents(res.data);
   }
-  const saveStudent = async(student) => {
-    const res = await axios.post("http://localhost:5000/api/Students1",student);
-    getstudents();
+
+  const saveStudent = async (student) => {
+    await axios.post("http://localhost:8080/student", student);
+    getStudents();
   }
+
   const deleteStud = async (id) => {
-    const res = await axios.delete(`http://localhost:5000/api/Students1/${id}`);
-    getstudents();
+    await axios.delete(`http://localhost:8080/student/${id}`);
+    getStudents();
   }
-  const updateStudent = async (s) => {
-    const res = await axios.put(`http://localhost:5000/api/Students1/${s.id}`,s);
-    getstudents();
+
+  const updateStudent = async (student) => {
+    await axios.put(`http://localhost:8080/student/${student.id}`, student);
+    getStudents();
   }
 
   return (
     <div>
-      <Header students ={students} saveStudent ={saveStudent} deleteStud = {deleteStud} updateStudent ={updateStudent}></Header>
+      <Header
+        students={students}
+        saveStudent={saveStudent}
+        deleteStud={deleteStud}
+        updateStudent={updateStudent}
+      />
     </div>
   );
 }

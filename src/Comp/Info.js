@@ -34,7 +34,7 @@ function Info(props)
     function update(s){
     //console.log(s);
     setEdit(true);
-    setName(s.studentName);
+    setName(s.name);
     setDept(s.department);
     setId(s.id);
     }
@@ -43,7 +43,7 @@ function Info(props)
         event.preventDefault();
         const student = {
             id,
-            studentName:sname,
+            name:sname,
             department:sdept
         }
         //console.log(student);
@@ -69,7 +69,7 @@ function Info(props)
                             return (
                                 <tr key = {s.id}>
                                     <td>{s.id}</td>
-                                    <td>{s.studentName}</td>
+                                    <td>{s.name}</td>
                                     <td>{s.department}</td>
                                     <td><button onClick={ () => {deleteStud(s.id)}}>Delete</button>
                                     <button onClick={ () => {update(s)}}>Update</button>

@@ -17,7 +17,7 @@ function Application(props)
     function saveStudent(event){
         event.preventDefault();
         const student = {
-            studentName:sname,
+            name:sname,
             department:sdept
         }
         // console.log(student);
